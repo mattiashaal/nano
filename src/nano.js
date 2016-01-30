@@ -8,7 +8,6 @@
 
     /**
      * Selector method
-     * @returns: A collection of nodes
      */
     var dom = function (selector) {
         if (!selector) {
@@ -140,9 +139,9 @@
             }
         },
 
-        // /**
-        //  * Toggle class on elements
-        //  */
+        /**
+         * Toggle class on elements
+         */
         toggleClass: function (className) {
             if (document.documentElement.classList) {
                 return this.each(function () {
