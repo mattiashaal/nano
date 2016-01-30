@@ -59,14 +59,14 @@
         },
 
         /**
-         * Returns first element in array
+         * Return first element in array
          */
         first: function () {
             return nano(this[0]);
         },
 
         /**
-         * Returns last element in array
+         * Return last element in array
          */
         last: function () {
             return nano(this[this.length - 1]);
