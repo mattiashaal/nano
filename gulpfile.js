@@ -29,7 +29,7 @@ gulp.task("scripts", function() {
         console.log(err.message);
     })
     .pipe(concat("nano.min.js"))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(header(banner, {
         package: package
     }))

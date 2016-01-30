@@ -112,11 +112,11 @@
         addClass: function (className) {
             if (!this.hasClass(className)) {
                 if (document.documentElement.classList) {
-                    return this.each(function() {
+                    return this.each(function () {
                         this.classList.add(className);
                     });
                 } else {
-                    return this.each(function() {
+                    return this.each(function () {
                         this.className += ' ' + className;
                     });
                 }
@@ -129,33 +129,33 @@
         removeClass: function (className) {
             if (this.hasClass(className)) {
                 if (document.documentElement.classList) {
-                    return this.each(function() {
+                    return this.each(function () {
                         this.classList.remove(className);
-                    }
+                    });
                 } else {
-                    return this.each(function() {
+                    return this.each(function () {
                         this.className = this.className.replace(new RegExp('(^|\\s)*' + className + '(\\s|$)*', 'g'), '');
-                    }
+                    });
                 }
             }
         },
 
-        /**
-         * Toggle class on elements
-         */
+        // /**
+        //  * Toggle class on elements
+        //  */
         toggleClass: function (className) {
             if (document.documentElement.classList) {
-                return this.each(function() {
+                return this.each(function () {
                     this.classList.toggle(className);
-                }
+                });
             } else {
-                return this.each(function() {
+                return this.each(function () {
                     if (this.hasClass(className)) {
                         this.removeClass(className);
                     } else {
                         this.addClass(className);
                     }
-                }
+                });
             }
         },
 
@@ -195,132 +195,7 @@
                     this.detachEvent('on' + type, callback);
                 });
             }
-        },
-
-        /**
-         *
-         */
-        text: function () {},
-
-        /**
-         *
-         */
-        html: function () {},
-
-        /**
-         *
-         */
-        attr: function () {},
-
-        /**
-         *
-         */
-        removeAttr: function () {},
-
-        /**
-         *
-         */
-        append: function () {},
-
-        /**
-         *
-         */
-        appendTo: function () {},
-
-        /**
-         *
-         */
-        matches: function () {},
-
-        /**
-         *
-         */
-        css: function () {},
-
-        /**
-         *
-         */
-        data: function () {},
-
-        /**
-         *
-         */
-        removeData: function () {},
-
-        /**
-         *
-         */
-        empty: function () {},
-
-        /**
-         *
-         */
-        width: function () {},
-
-        /**
-         *
-         */
-        height: function () {},
-
-        /**
-         *
-         */
-        innerWidth: function () {},
-
-        /**
-         *
-         */
-        innerHeight: function () {},
-
-        /**
-         *
-         */
-        viewWidth: function () {},
-
-        /**
-         *
-         */
-        viewHeight: function () {},
-
-        /**
-         *
-         */
-        inView: function () {},
-
-        /**
-         *
-         */
-        insertBefore: function () {},
-
-        /**
-         *
-         */
-        insertAfter: function () {},
-
-        /**
-         *
-         */
-        prepend: function () {},
-
-        /**
-         *
-         */
-        prependTo: function () {},
-
-        /**
-         *
-         */
-        add: function () {},
-
-        /**
-         *
-         */
-        remove: function () {},
-
-        /**
-         *
-         */
-        next: function () {}
+        }
 
     }
 
