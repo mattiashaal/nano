@@ -14,7 +14,7 @@ var banner = [
   '/*! ',
     '<%= package.name %> ',
     'v<%= package.version %> | ',
-    '(©) ' + new Date().getFullYear() + ' <%= package.author %> |',
+    '© ' + new Date().getFullYear() + ' <%= package.author %> |',
     ' <%= package.repository.url %>',
   ' */',
   '\n'
