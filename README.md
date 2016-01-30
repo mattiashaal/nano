@@ -1,3 +1,3 @@
 # Nano.js
 
-Nano is a JavaScript library for DOM manipulation with browser support for ie8+, moz5+, o10+, webkit.
+Nano is a JavaScript library for DOM manipulation. Browser support for Internet Explorer 8+, Firefox 5+, Opera 10+, Chrome and Safari.
