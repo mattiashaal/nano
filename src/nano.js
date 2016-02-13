@@ -47,6 +47,22 @@
     }
 
     /**
+     * Callback method on DOMContentLoaded
+     * 1. Sanity check.
+     * 2. If document is already loaded, run method.
+     * 3. Otherwise, wait until document is loaded.
+     */
+    nano.ready = function (callback) {
+        if (typeof callback !== 'function') { // (1)
+            return;
+        }
+        if (document.readyState === 'complete') { // (2)
+            return callback();
+        }
+        document.addEventListener('DOMContentLoaded', callback, false); // (3)
+    }
+
+    /**
      * DOM manipulation methods
      */
     nano.fn = dom.prototype = {
@@ -159,14 +175,6 @@
         },
 
         /**
-         * Callback method on DOMContentLoaded
-         * TODO: Add this[0] instead of document to function
-         */
-        ready: function (callback) {
-            document.addEventListener("DOMContentLoaded", callback);
-        },
-
-        /**
          * Add event
          */
         on: function (type, callback) {
@@ -194,8 +202,19 @@
                     this.detachEvent('on' + type, callback);
                 });
             }
-        }
+        },
 
+        /**
+         * Determine if an element is in viewport
+         */
+        inview: function () {
+            var distance = this[0].getBoundingClientRect();
+            if (distance.top <= (window.innerHeight || document.documentElement.clientHeight) && distance.bottom >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     root.nano = root.$ = nano;
