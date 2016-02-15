@@ -21,7 +21,7 @@ before the closing `</body>` tag.
 
 ## Use
 
-Use this library with `$()` or `nano()`, The `$` is just an alias to `nano`.
+Use this library with `$()` or `nano()`. The `$` is just an alias to `nano`.
 
 ```js
 // Select an element by selector
