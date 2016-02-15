@@ -2,14 +2,11 @@
 
     'use strict';
 
-    function nano(selector) {
-        return new dom(selector);
+    var nano = function (selector) {
+        return new init(selector);
     }
 
-    /**
-     * Selector method
-     */
-    var dom = function (selector) {
+    var init = function (selector) {
         if (!selector) {
             return this;
         }
@@ -18,8 +15,13 @@
         if (selector instanceof HTMLElement || selector instanceof NodeList) {
             this.nodes = (selector.length > 1) ? [].slice.call(selector) : [selector];
         } else if (typeof selector === 'string') {
+            var regExpId = /^#[\w-]*$/,
+                idMatch = regExpId.test(selector);
             if (selector[0] === '<' && selector[selector.length - 1] === '>') {
                 this.nodes = [nano.createNode(selector)];
+            } else if (idMatch) {
+                var element = selector.slice(1);
+                this.nodes = document.getElementById(element);
             } else {
                 this.nodes = [].slice.call(document.querySelectorAll(selector));
             }
@@ -31,44 +33,12 @@
             }
         }
         return this;
-    };
-
-    nano.createNode = function (html) {
-        var div = document.createElement('div');
-        div.innerHTML = html;
-        return div.firstChild;
     }
 
-    nano.each = function (collection, callback) {
-        var l = collection.length;
-        for (var i = 0; i < l; i++) {
-            callback.call(collection[i], collection, i);
-        }
-    }
-
-    /**
-     * Callback method on DOMContentLoaded
-     * 1. Sanity check.
-     * 2. If document is already loaded, run method.
-     * 3. Otherwise, wait until document is loaded.
-     */
-    nano.ready = function (callback) {
-        if (typeof callback !== 'function') { // (1)
-            return;
-        }
-        if (document.readyState === 'complete') { // (2)
-            return callback();
-        }
-        document.addEventListener('DOMContentLoaded', callback, false); // (3)
-    }
-
-    /**
-     * DOM manipulation methods
-     */
-    nano.fn = dom.prototype = {
+    nano.fn = init.prototype = {
 
         /**
-         * Iterates through a collection and calls the callback method on each
+         * Extends nano.each()
          */
         each: function (callback) {
             nano.each(this, callback);
@@ -89,28 +59,6 @@
         },
 
         /**
-         * Show elements in DOM
-         */
-        show: function () {
-            var l = this.length;
-            while (l--) {
-                this[l].style.display = 'block';
-            }
-            return this;
-        },
-
-        /**
-         * Hide elements from DOM
-         */
-        hide: function () {
-            var l = this.length;
-            while (l--) {
-                this[l].style.display = 'none';
-            }
-            return this;
-        },
-
-        /**
          * Check if element has class
          */
         hasClass: function (className) {
@@ -122,7 +70,7 @@
         },
 
         /**
-         * Add class to elements
+         * Add class to element
          */
         addClass: function (className) {
             if (!this.hasClass(className)) {
@@ -139,7 +87,7 @@
         },
 
         /**
-         * Remove class from elements
+         * Remove class from element
          */
         removeClass: function (className) {
             if (this.hasClass(className)) {
@@ -156,7 +104,7 @@
         },
 
         /**
-         * Toggle class on elements
+         * Toggle class on element
          */
         toggleClass: function (className) {
             if (document.documentElement.classList) {
@@ -215,6 +163,37 @@
                 return false;
             }
         }
+    }
+
+    /**
+     * Create a new node for DOM
+     */
+    nano.createNode = function (html) {
+        var div = document.createElement('div');
+        div.innerHTML = html;
+        return div.firstChild;
+    }
+
+    /**
+     * Iterates through a collection and calls the callback method on each
+     */
+    nano.each = function (collection, callback) {
+        for (var i = 0; i < collection.length; i++) {
+            callback.call(collection[i], collection, i);
+        }
+    }
+
+    /**
+     * Wait until the DOM is ready before executing code
+     */
+    nano.ready = function (callback) {
+        if (typeof callback !== 'function') {
+            return;
+        }
+        if (document.readyState === 'complete') {
+            return callback();
+        }
+        document.addEventListener('DOMContentLoaded', callback, false);
     }
 
     root.nano = root.$ = nano;
