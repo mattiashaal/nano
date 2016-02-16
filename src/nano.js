@@ -15,13 +15,8 @@
         if (selector instanceof HTMLElement || selector instanceof NodeList) {
             this.nodes = (selector.length > 1) ? [].slice.call(selector) : [selector];
         } else if (typeof selector === 'string') {
-            var regExpId = /^#[\w-]*$/,
-                idMatch = regExpId.test(selector);
             if (selector[0] === '<' && selector[selector.length - 1] === '>') {
                 this.nodes = [nano.createNode(selector)];
-            } else if (idMatch) {
-                var element = selector.slice(1);
-                this.nodes = document.getElementById(element);
             } else {
                 this.nodes = [].slice.call(document.querySelectorAll(selector));
             }
