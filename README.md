@@ -7,7 +7,7 @@ Nano is a tiny JavaScript DOM manipulation library under 3KB. Nano using the pro
 bower install nano.js
 ```
 
-## Manual install
+## Install manually
 
 Use the compiled file in the `dist` folder. Ensure you place the script file
 before the closing `</body>` tag.
