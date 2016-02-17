@@ -1,0 +1,12 @@
+{
+    "name": "nano.js",
+    "authors": "Mattias Haal",
+    "description": "Nano is a tiny JavaScript DOM manipulation library under 3KB",
+    "version": "0.1.0",
+    "main": "dist/nano.min.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:kaloja/nano.git"
+    }
+}
