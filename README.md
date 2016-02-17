@@ -53,4 +53,9 @@ $('.element').off('click', function () {});
 
 // Determine if an element is in viewport
 $('.element').inview();
+
+// Check if DOM is ready before executing code
+$.ready(function() {
+    console.log('DOM is ready!');
+});
 ```
