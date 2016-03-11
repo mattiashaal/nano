@@ -11,11 +11,11 @@ var package = require('./package.json');
 
 /* Banner */
 var banner = [
-  '/*! ',
-    '<%= package.name %> ',
-    'v<%= package.version %> | ',
-    '© ' + new Date().getFullYear() + ' <%= package.author %> |',
-    ' <%= package.repository.url %>',
+  '/* ',
+    '<%= package.title %> ',
+    '<%= package.version %> | ',
+    //'© ' + new Date().getFullYear() + ' <%= package.author %> |',
+    '<%= package.repository.url %>',
   ' */',
   '\n'
 ].join('');

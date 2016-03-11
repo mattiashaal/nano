@@ -3,15 +3,15 @@
     'use strict';
 
     var nano = function (selector) {
-        return new init(selector);
-    }
 
-    var init = function (selector) {
-        if (!selector) {
-            return this;
+        if (!(this instanceof nano)) {
+            return new nano(selector);
         }
-        this.length = 0;
-        this.nodes = [];
+
+        if (selector instanceof nano) {
+            return selector;
+        }
+
         if (selector instanceof HTMLElement || selector instanceof NodeList) {
             this.nodes = (selector.length > 1) ? [].slice.call(selector) : [selector];
         } else if (typeof selector === 'string') {
@@ -21,16 +21,19 @@
                 this.nodes = [].slice.call(document.querySelectorAll(selector));
             }
         }
+
         if (this.nodes.length) {
             this.length = this.nodes.length;
             for (var i = 0; i < this.nodes.length; i++) {
                 this[i] = this.nodes[i];
             }
         }
+
         return this;
+
     }
 
-    nano.fn = init.prototype = {
+    nano.prototype = {
 
         /**
          * Extends nano.each()
@@ -170,13 +173,13 @@
     }
 
     /**
-     * Iterates through a collection and calls the callback method on each
+     * Loop through a collection and calls the callback method on each
      */
     nano.each = function (collection, callback) {
         for (var i = 0; i < collection.length; i++) {
             callback.call(collection[i], collection, i);
         }
-    }
+    };
 
     /**
      * Wait until the DOM is ready before executing code
@@ -191,6 +194,6 @@
         document.addEventListener('DOMContentLoaded', callback, false);
     }
 
-    root.nano = root.$ = nano;
+    root.nano = root.$ = root.n = nano;
 
 })(this);
