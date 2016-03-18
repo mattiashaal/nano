@@ -18,7 +18,6 @@
             if (new RegExp(/^</).test(selector)) {
                 this.nodes = [nano.createNode(selector)];
             } else if (new RegExp(/^\#[\w\-]+$/).test(selector)) {
-                console.log('id');
                 return document.getElementById(selector.substr(1));
             } else if (new RegExp(/^\.[\w\-]+$/).test(selector)) {
                 this.nodes = document.getElementsByClassName(selector.substr(1));  
