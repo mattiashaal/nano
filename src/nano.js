@@ -14,9 +14,15 @@
 
         if (selector instanceof HTMLElement || selector instanceof NodeList) {
             this.nodes = (selector.length > 1) ? [].slice.call(selector) : [selector];
-        } else if (typeof selector === 'string') {
-            if (selector[0] === '<' && selector[selector.length - 1] === '>') {
+        } else if (typeof selector === 'string') {         
+            if (new RegExp(/^</).test(selector)) {
                 this.nodes = [nano.createNode(selector)];
+            } else if (new RegExp(/^\#[\w\-]+$/).test(selector)) {
+                return document.getElementById(selector);
+            } else if (new RegExp(/^\.[\w\-]+$/).test(selector)) {
+                this.nodes = document.getElementsByClassName(selector.substr(1));  
+            } else if (new RegExp(/^\w+$/).test(selector)) {
+                this.nodes = [].slice.call(document.getElementsByTagName(selector));
             } else {
                 this.nodes = [].slice.call(document.querySelectorAll(selector));
             }
