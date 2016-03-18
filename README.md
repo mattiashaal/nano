@@ -30,7 +30,9 @@ Use this library with `$()` or `nano()`. The `$` is just an alias to `nano`.
 
 ```js
 // Select an element by selector
-$('.element');
+$('.class');
+$('#id');
+$('tag');
 
 // Return first element in array
 $('.element').first();
