@@ -1,6 +1,6 @@
 # Nano.js
 
-Nano is a tiny JavaScript DOM manipulation library under 3KB. Nano using the prototype chaining method, just like jQuery. Nano has browser support for Internet Explorer 8+, Firefox 5+, Opera 10+, Chrome and Safari.
+Nano is a tiny JavaScript DOM manipulation library under 3KB. Nano using the prototype chaining method, just like jQuery. Nano has browser support for Internet Explorer 9+, Firefox 5+, Opera 10+, Chrome and Safari.
 
 ## Install with Bower
 ```
