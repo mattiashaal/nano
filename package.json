@@ -1,6 +1,6 @@
 {
     "name": "nano.js",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Nano is a JavaScript library for DOM manipulation",
     "author": "@kaloja",
     "license": "MIT",
