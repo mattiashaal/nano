@@ -61,6 +61,9 @@ $('.element').off('click', function () {});
 // Determine if an element is in viewport
 $('.element').inview();
 
+// Deal with animation and rendering with requestAnimationFram (rAF)
+$('.element').rAF();
+
 // Check if DOM is ready before executing code
 $.ready(function() {
     console.log('DOM is ready!');

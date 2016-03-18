@@ -166,6 +166,34 @@
             } else {
                 return false;
             }
+        },
+
+        /**
+         * Deal with animation and rendering with requestAnimationFram (rAF)
+         */
+        rAF: function (callback) {
+            var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
+            var ticking = false;
+            function onScroll() {
+                requestTick();
+            }
+            function requestTick() {
+                if (!ticking) {
+                    rAF(update);
+                }
+                ticking = true;
+            }
+            function update() {
+                if (ticking) {
+                    callback();
+                }
+                ticking = false; // Reset the tick so we can capture the next onScroll
+            }
+            if (document.addEventListener) {
+                window.addEventListener('scroll', onScroll, false);
+            } else if (document.attachEvent) {
+                window.attachEvent('on' + 'scroll', onScroll);
+            }
         }
     }
 
