@@ -169,7 +169,7 @@
         },
 
         /**
-         * Deal with animation and rendering with requestAnimationFram (rAF)
+         * Deal with animation and rendering with requestAnimationFrame (rAF)
          */
         rAF: function (callback) {
             var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
