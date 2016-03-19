@@ -3,7 +3,6 @@
     'use strict';
 
     var nano = function (selector) {
-
         if (!(this instanceof nano)) {
             return new nano(selector);
         }
@@ -36,7 +35,6 @@
         }
 
         return this;
-
     }
 
     nano.prototype = {
@@ -168,27 +166,48 @@
             }
         },
 
-        /**
-         * Deal with animation and rendering with requestAnimationFrame (rAF)
-         */
+        /**          
+         * Deal with animation and rendering with requestAnimationFrame
+         * @source: http://www.html5rocks.com/en/tutorials/speed/animations/
+         * @polyfill: https://gist.github.com/paulirish/1579671/
+         */         
         rAF: function (callback) {
-            var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
-            var ticking = false;
+            var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame,
+                ticking = false,
+                lastTime = 0;
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback, element) {
+                    var currentTime = new Date().getTime(),
+                        timeToCall = Math.max(0, 16 - (currentTime - lastTime)),
+                        id = window.setTimeout(function() { 
+                            callback(currentTime + timeToCall); 
+                        }, timeToCall);
+                    lastTime = currentTime + timeToCall;
+                    return id;
+                }
+            }
+
             function onScroll() {
                 requestTick();
             }
+
             function requestTick() {
                 if (!ticking) {
                     rAF(update);
                 }
                 ticking = true;
             }
+
             function update() {
                 if (ticking) {
                     callback();
                 }
-                ticking = false; // Reset the tick so we can capture the next onScroll
+                
+                // Reset the tick so we can capture the next onScroll
+                ticking = false; 
             }
+
             if (document.addEventListener) {
                 window.addEventListener('scroll', onScroll, false);
             } else if (document.attachEvent) {

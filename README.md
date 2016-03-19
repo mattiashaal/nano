@@ -1,6 +1,6 @@
 # Nano.js
 
-Nano is a tiny JavaScript DOM manipulation library under 3KB. Nano using the prototype chaining method, just like jQuery. Nano has browser support for Internet Explorer 9+, Firefox 5+, Opera 10+, Chrome and Safari.
+Nano is a tiny JavaScript DOM manipulation library under 3KB. Nano using the prototype chaining method, just like jQuery. Nano has IE9+ browser support.
 
 ## Install with Bower
 ```
@@ -26,7 +26,7 @@ before the closing `</body>` tag.
 
 ## Use
 
-Use this library with `$()` or `nano()`. The `$` is just an alias to `nano`.
+Use this library with `$()`, `n()` or `nano()`. The `$` and `n()` is just alias to `nano`.
 
 ```js
 // Select an element by selector
@@ -61,7 +61,7 @@ $('.element').off('click', function () {});
 // Determine if an element is in viewport
 $('.element').inview();
 
-// Deal with animation and rendering with requestAnimationFrame (rAF)
+// Deal with animation and rendering with requestAnimationFrame
 $('.element').rAF();
 
 // Check if DOM is ready before executing code
@@ -69,3 +69,6 @@ $.ready(function() {
     console.log('DOM is ready!');
 });
 ```
+
+## Roadmap
+- More cross browser testing
